@@ -1,7 +1,7 @@
 package lei.yu;
 
 public abstract class RichManLand {
-    public static  String NORMAL_LAND = "0";
+    public static String NORMAL_LAND = "0";
     public static String HOSPITAL = "H";
     public static String TOOL_HOUSE = "T";
     public static String GIFT_HOUSE = "G";
