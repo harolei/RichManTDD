@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RichManMap {
-    private List<RichManLand> landsOnTheMap;
+    private List<RichManLand> landsOnTheMap= new ArrayList<RichManLand>();
 
     public RichManMap() {
         setInitialLandKind();
@@ -29,19 +29,25 @@ public class RichManMap {
     }
 
     private void setInitialLandKind() {
-        landsOnTheMap = new ArrayList<RichManLand>();
-        for(int i=0;i<70;i++){
-            landsOnTheMap.add(new RichManLand());
-            landsOnTheMap.get(i).setLandKind("0");
-        }
-        landsOnTheMap.get(0).setLandKind("S");
-        landsOnTheMap.get(14).setLandKind("H");
-        landsOnTheMap.get(28).setLandKind("T");
-        landsOnTheMap.get(35).setLandKind("G");
-        landsOnTheMap.get(49).setLandKind("P");
-        landsOnTheMap.get(63).setLandKind("M");
+        setNormalLand();
+        setSpecialLand();
+    }
+
+    private void setSpecialLand() {
+        landsOnTheMap.set(0,new StartPoint());
+        landsOnTheMap.set(14,new Hospital());
+        landsOnTheMap.set(28,new ToolHouse());
+        landsOnTheMap.set(35,new GiftHouse());
+        landsOnTheMap.set(49,new Prison());
+        landsOnTheMap.set(63,new MagicRoom());
         for(int i=64;i<70;i++){
-            landsOnTheMap.get(i).setLandKind("$");
+            landsOnTheMap.set(i,new PointLand());
+        }
+    }
+
+    private void setNormalLand() {
+        for(int i=0;i<70;i++){
+            landsOnTheMap.add(new NormalLand());
         }
     }
 }
