@@ -61,4 +61,20 @@ public class RichManTest {
         NormalLand soldLand = (NormalLand)gamerAction.getRichManMap().getSpecifiedLandOnTheMap(6);
         assertEquals(gamer, soldLand.getLandOwner());
     }
+
+    @Test
+    public void should_refresh_the_map_when_the_gamer_keep_going() throws Exception {
+        gamerAction.setGamerMoveOnTheMap(6, gamer);
+        gamerAction.removeGamerOnCurrentLandBeforeMove(gamer);
+        gamerAction.setGamerMoveOnTheMap(2, gamer);
+        gamerAction.getRichManMap().printMap();
+        assertEquals("S0000000A00000H0000000000000T" + '\n' +
+                     "$                           0" + '\n' +
+                     "$                           0" + '\n' +
+                     "$                           0" + '\n' +
+                     "$                           0" + '\n' +
+                     "$                           0" + '\n' +
+                     "$                           0" + '\n' +
+                     "M0000000000000P0000000000000G" + '\n',outContent.toString());
+    }
 }

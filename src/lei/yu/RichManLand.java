@@ -21,6 +21,10 @@ public abstract class RichManLand {
         gamerOnThisLand.add(newComingGamer);
     }
 
+    public void removeGamerOnLand(){
+        gamerOnThisLand.remove(0);
+    }
+
     public String displayOnMap(){
         String displayOnMap;
         if(gamerOnThisLand.isEmpty()){

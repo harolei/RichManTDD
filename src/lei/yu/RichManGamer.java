@@ -15,8 +15,8 @@ public class RichManGamer {
     public int getGamerPosition() {
         return gamerPosition;
     }
-    public void setGamerPosition(int steps) {
-        gamerPosition += steps;
+    public void setGamerPosition(int position) {
+        gamerPosition = position;
         if(gamerPosition>69)
             gamerPosition -= 70;
     }
