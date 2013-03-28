@@ -22,12 +22,12 @@ public abstract class RichManLand {
     }
 
     public String displayOnMap(){
-        String displayOnMap = "";
+        String displayOnMap;
         if(gamerOnThisLand.isEmpty()){
             displayOnMap = getLandKind();
         }
         else{
-            displayOnMap = gamerOnThisLand.get(gamerOnThisLand.size()).getGamerName();
+            displayOnMap = gamerOnThisLand.get(gamerOnThisLand.size()-1).getGamerName();
         }
         return displayOnMap;
     }
@@ -35,14 +35,14 @@ public abstract class RichManLand {
 }
 
 class NormalLand extends RichManLand {
-    private int landLevel = 0;
+    private RichManGamer landOwner = null;
 
-    public int getLandLevel() {
-        return landLevel;
+    public RichManGamer getLandOwner() {
+        return landOwner;
     }
 
-    public void setLandLevel(int landLevel) {
-        this.landLevel = landLevel;
+    public void setLandOwner(RichManGamer landOwner) {
+        this.landOwner = landOwner;
     }
 
     public String getLandKind(){
