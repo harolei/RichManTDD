@@ -1,5 +1,8 @@
 package lei.yu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class RichManLand {
     public static String NORMAL_LAND = "0";
     public static String HOSPITAL = "H";
@@ -10,11 +13,38 @@ public abstract class RichManLand {
     public static String POINT_LAND = "$";
     public static String START_POINT = "S";
 
+    private List<RichManGamer> gamerOnThisLand = new ArrayList<RichManGamer>();
+
     public abstract String getLandKind();
+
+    public void addGamerOnLand(RichManGamer newComingGamer){
+        gamerOnThisLand.add(newComingGamer);
+    }
+
+    public String displayOnMap(){
+        String displayOnMap = "";
+        if(gamerOnThisLand.isEmpty()){
+            displayOnMap = getLandKind();
+        }
+        else{
+            displayOnMap = gamerOnThisLand.get(gamerOnThisLand.size()).getGamerName();
+        }
+        return displayOnMap;
+    }
 
 }
 
 class NormalLand extends RichManLand {
+    private int landLevel = 0;
+
+    public int getLandLevel() {
+        return landLevel;
+    }
+
+    public void setLandLevel(int landLevel) {
+        this.landLevel = landLevel;
+    }
+
     public String getLandKind(){
         return RichManLand.NORMAL_LAND;
     }

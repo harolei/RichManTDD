@@ -10,22 +10,23 @@ public class RichManMap {
         setInitialLandKind();
     }
 
-    public String printMap(){
-        String map = "";
-        for(int i=0;i<29;i++){
-            map += landsOnTheMap.get(i).getLandKind();
-        }
-        map += "\n" + landsOnTheMap.get(69).getLandKind() + "                           " + landsOnTheMap.get(29).getLandKind();
-        map += "\n" + landsOnTheMap.get(68).getLandKind() + "                           " + landsOnTheMap.get(30).getLandKind();
-        map += "\n" + landsOnTheMap.get(67).getLandKind() + "                           " + landsOnTheMap.get(31).getLandKind();
-        map += "\n" + landsOnTheMap.get(66).getLandKind() + "                           " + landsOnTheMap.get(32).getLandKind();
-        map += "\n" + landsOnTheMap.get(65).getLandKind() + "                           " + landsOnTheMap.get(33).getLandKind();
-        map += "\n" + landsOnTheMap.get(64).getLandKind() + "                           " + landsOnTheMap.get(34).getLandKind() + "\n";
+    public RichManLand getSpecifiedLandOnTheMap(int landIndex) {
+        return landsOnTheMap.get(landIndex);
+    }
 
-        for(int i=63;i>34;i--) {
-            map += landsOnTheMap.get(i).getLandKind();
+    public void printMap(){
+        for(int i=0;i<29;i++){
+            System.out.print(landsOnTheMap.get(i).displayOnMap());
         }
-        return map;
+        System.out.print("\n");
+        for(int i=0;i<6;i++){
+            System.out.print(landsOnTheMap.get(69-i).displayOnMap()+"                           ");
+            System.out.print(landsOnTheMap.get(29+i).displayOnMap()+"\n");
+        }
+        for(int i=63;i>34;i--) {
+            System.out.print(landsOnTheMap.get(i).displayOnMap());
+        }
+        System.out.print("\n");
     }
 
     private void setInitialLandKind() {
