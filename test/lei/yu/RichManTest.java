@@ -15,12 +15,16 @@ public class RichManTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private RichManGamer gamer;
     private RichManAction gamerAction;
+    private RichManGamer newGamer;
+    private NormalLand currentLand;
 
     @Before
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
         gamer = new RichManGamer("A");
         gamerAction = new RichManAction();
+        newGamer = new RichManGamer("Q");
+        currentLand = (NormalLand)gamerAction.getLandsManager().getSpecifiedLandOnTheMap(6);
     }
 
     @After
@@ -60,8 +64,7 @@ public class RichManTest {
     public void should_change_the_land_owner_after_sold() throws Exception {
         gamerAction.setGamerMoveOnTheMap(6,gamer);
         gamerAction.buySpecifiedLand(6,gamer);
-        NormalLand soldLand = (NormalLand)gamerAction.getLandsManager().getSpecifiedLandOnTheMap(6);
-        assertEquals(gamer, soldLand.getLandOwner());
+        assertEquals(gamer, currentLand.getLandOwner());
     }
 
     @Test
@@ -87,7 +90,6 @@ public class RichManTest {
         gamerAction.removeGamerOnCurrentLandBeforeMove(gamer);
         gamerAction.setGamerMoveOnTheMap(70,gamer);
         gamerAction.upgradeCurrentLand(gamer);
-        NormalLand currentLand = (NormalLand)gamerAction.getLandsManager().getSpecifiedLandOnTheMap(6);
         assertEquals(1,currentLand.getLandLevel());
     }
 
@@ -97,7 +99,6 @@ public class RichManTest {
         gamerAction.buySpecifiedLand(6,gamer);
         gamerAction.removeGamerOnCurrentLandBeforeMove(gamer);
         gamerAction.setGamerMoveOnTheMap(70,gamer);
-        NormalLand currentLand = (NormalLand)gamerAction.getLandsManager().getSpecifiedLandOnTheMap(6);
         assertEquals(true, gamerAction.checkIfTheGamerIsOnItOwnLand(gamer, currentLand));
     }
 
@@ -105,9 +106,7 @@ public class RichManTest {
     public void should_pay_money_when_gamer_move_to_other_gamers_land() throws Exception {
         gamerAction.setGamerMoveOnTheMap(6,gamer);
         gamerAction.buySpecifiedLand(6,gamer);
-        RichManGamer newGamer = new RichManGamer("Q");
         gamerAction.setGamerMoveOnTheMap(6,newGamer);
-        NormalLand currentLand = (NormalLand)gamerAction.getLandsManager().getSpecifiedLandOnTheMap(6);
         gamerAction.payTools(newGamer,currentLand);
         assertThat(newGamer.getBalance(),is(900.0));
     }
@@ -116,10 +115,8 @@ public class RichManTest {
     public void should_add_balance_of_gamer_if_other_gamer_payed_tolls() throws Exception {
         gamerAction.setGamerMoveOnTheMap(6,gamer);
         gamerAction.buySpecifiedLand(6,gamer);
-        RichManGamer newGamer = new RichManGamer("Q");
-        gamerAction.setGamerMoveOnTheMap(6,newGamer);
-        NormalLand currentLand = (NormalLand)gamerAction.getLandsManager().getSpecifiedLandOnTheMap(6);
-        gamerAction.payTools(newGamer,currentLand);
+        gamerAction.setGamerMoveOnTheMap(6, newGamer);
+        gamerAction.payTools(newGamer, currentLand);
         assertThat(gamer.getBalance(),is(900.0));
 
     }
