@@ -41,6 +41,7 @@ public abstract class RichManLand {
 class NormalLand extends RichManLand {
     private RichManGamer landOwner = null;
     private int landLevel;
+    private double price;
 
     public RichManGamer getLandOwner() {
         return landOwner;
@@ -60,6 +61,14 @@ class NormalLand extends RichManLand {
 
     public void setLandLevel(int landLevel) {
         this.landLevel = landLevel;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
 
