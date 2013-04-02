@@ -77,4 +77,16 @@ public class RichManTest {
                      "$                           0" + '\n' +
                      "M0000000000000P0000000000000G" + '\n',outContent.toString());
     }
+
+    @Test
+    public void should_upgrade_the_land_level_when_gamer_move_to_its_own_land_again() throws Exception {
+        gamerAction.setGamerMoveOnTheMap(6,gamer);
+        gamerAction.buySpecifiedLand(6,gamer);
+        gamerAction.removeGamerOnCurrentLandBeforeMove(gamer);
+        gamerAction.setGamerMoveOnTheMap(70,gamer);
+        gamerAction.upgradeCurrentLand(gamer);
+        NormalLand currentLand = (NormalLand)gamerAction.getRichManMap().getSpecifiedLandOnTheMap(6);
+        assertEquals(1,currentLand.getLandLevel());
+    }
+
 }

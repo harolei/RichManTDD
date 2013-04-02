@@ -20,4 +20,9 @@ public class RichManAction {
     public RichManMap getRichManMap() {
         return richManMap;
     }
+
+    public void upgradeCurrentLand(RichManGamer gamer) {
+        NormalLand upgradeCurrentLand = (NormalLand)richManMap.getSpecifiedLandOnTheMap(gamer.getGamerPosition());
+        upgradeCurrentLand.setLandLevel(upgradeCurrentLand.getLandLevel()+1);
+    }
 }
